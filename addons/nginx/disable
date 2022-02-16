@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# addons/demo-nginx/disable
+
+import click
+import subprocess
+
+@click.command()
+def main():
+    click.echo("Disabling demo-nginx")
+    subprocess.check_call([
+        "microk8s", "kubectl", "delete", "deploy", "demo-nginx"
+    ])
+    click.echo("Disabled demo-nginx")
+
+if __name__ == "__main__":
+    main()
