@@ -10,3 +10,11 @@ microk8s-addons:
         - amd64
         - arm64
         - s390x
+
+    - name: "clusterapi"
+      description: "Deploy and bootstrap Cluster API"
+      version: "1.2.2"
+      check_status: "$SNAP_COMMON/plugins/clusterctl"
+      supported_architectures:
+        - amd64
+        - arm64

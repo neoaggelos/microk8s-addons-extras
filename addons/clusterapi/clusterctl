@@ -1,0 +1,8 @@
+#!/bin/bash
+
+args=""
+if echo "$@" | grep -q "\(^init\|^alpha topology plan\)"; then
+	args="--kubeconfig=${SNAP_DATA}/credentials/client.config"
+fi
+
+"${SNAP_COMMON}/plugins/.clusterctl" --config "${SNAP_COMMON}/clusterctl.yaml" ${args} "$@"

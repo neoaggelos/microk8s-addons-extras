@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CURRENT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+. "${SNAP}/actions/common/utils.sh"
+
+"${SNAP}/microk8s-enable.wrapper" dns
+
+export VERSION="${VERSION:-v1.2.2}"
+export CLUSTERCTL="${CLUSTERCTL:-https://github.com/kubernetes-sigs/cluster-api/releases/download/${VERSION}/clusterctl-linux-${SNAP_ARCH}}"
+
+fetch_as "${CLUSTERCTL}" "${SNAP_COMMON}/plugins/.clusterctl"
+run_with_sudo chmod +x "${SNAP_COMMON}/plugins/.clusterctl"
+
+cp "${CURRENT_DIR}/clusterctl" "${SNAP_COMMON}/plugins/clusterctl"
+cp "${CURRENT_DIR}/clusterctl.yaml" "${SNAP_COMMON}/clusterctl.yaml"
+
+echo "
+
+clusterctl has been installed successfully.
+Next step is to initialize this node as a management cluster with the following command:
+
+    microk8s clusterctl init -i <infrastructure-provider>
+    microk8s clusterctl init -b microk8s -c microk8s
+
+For a list of all providers supported by this version of ClusterAPI, see:
+
+    microk8s clusterctl config repositories
+
+"

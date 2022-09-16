@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm "${SNAP_COMMON}/plugins/clusterctl"
+rm "${SNAP_COMMON}/plugins/.clusterctl"
+rm "${SNAP_COMMON}/clusterctl.yaml"
