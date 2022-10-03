@@ -1,7 +1,7 @@
 #!/bin/bash
 
 args=""
-if echo "$@" | grep -q "\(^init\|^alpha topology plan\)"; then
+if ! echo "$@" | grep -q "\(^version\|^completion\|^config\|^generate yaml\|^generate provider\|^help\)"; then
 	args="--kubeconfig=${SNAP_DATA}/credentials/client.config"
 fi
 
