@@ -18,3 +18,13 @@ microk8s-addons:
       supported_architectures:
         - amd64
         - arm64
+
+    - name: "flannel-k8s"
+      description: ""
+      version: "0.0.1"
+      check_status: "$SNAP_DATA/var/lock/flannel-k8s"
+      supported_architectures:
+        - amd64
+        - arm64
+        - s390x
+        - ppc64le
